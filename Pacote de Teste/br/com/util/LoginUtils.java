@@ -7,6 +7,7 @@ package br.com.util;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 /**
  *
@@ -21,12 +22,23 @@ public class LoginUtils extends AccessDriver {
     public void setSenha(String senha) {
         webDriver.findElement(By.name("j_password")).sendKeys(senha);
     }
-    public void clickEntrar(){
+
+    public void clickEntrar() {
         webDriver.findElement(By.tagName("button")).click();
     }
 
-    public void validateAccess() {
-    String page = webDriver.getCurrentUrl();
-    Assert.assertEquals("sl108prf:8084/Senac/", page);
+    public void accessSucess() {
+        WebElement feedback = webDriver.findElement(By.name("viewport"));
+        Assert.assertFalse(feedback.isDisplayed());
+    }
+
+    public void accessFailed() {
+        WebElement feedback = webDriver.findElement(By.id("j_idt14"));
+        Assert.assertTrue(feedback.isDisplayed());
+    }
+
+    public void logoutSuccess() {
+        String url = webDriver.getCurrentUrl();
+        Assert.assertEquals("http://184.107.94.164:21595/Senac/login.faces", url);
     }
 }

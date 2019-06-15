@@ -20,12 +20,12 @@ public class LoginStep {
 
     @Dado("que o usuário acessou o a pagina de login")
     public void que_o_usuário_acessou_o_a_pagina_de_login() {
-        login.inicializa();
+        login.initDriver();
     }
 
     @Dado("que o usuário digitou um login valido")
     public void que_o_usuário_digitou_um_login_valido() {
-        login.setLogin("angelica");
+        login.setLogin("admin");
     }
 
     @Dado("o usuário digitou uma senha")
@@ -40,53 +40,49 @@ public class LoginStep {
 
     @Então("ele sera redirecionado para a pagina inicial")
     public void ele_sera_redirecionado_para_a_pagina_inicial() {
-      login.validateAccess();
+        login.accessSucess();
+        login.quitWebDriver();
     }
 
     @Dado("que o usuário digitou um login invalido")
     public void que_o_usuário_digitou_um_login_invalido() {
-       login.setLogin("");
+        login.setLogin("errado");
     }
 
     @Dado("o usuário digitou uma senha válida")
     public void o_usuário_digitou_uma_senha_válida() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        login.setSenha("12345");
     }
 
     @Então("será apresentado ao usuário uma mensagem Dados Incorretos")
     public void será_apresentado_ao_usuário_uma_mensagem_Dados_Incorretos() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        login.clickEntrar();
     }
 
     @Dado("o usuário digitou uma senha invalida")
     public void o_usuário_digitou_uma_senha_invalida() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        login.setSenha("senha");
     }
 
     @Então("será apresentado ao usuário uma mensagem Dados incorretos")
     public void será_apresentado_ao_usuário_uma_mensagem_Dados_incorretos() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        login.accessFailed();
+        login.quitWebDriver();
     }
 
     @Dado("que o usuário esta logado no sistema")
     public void que_o_usuário_esta_logado_no_sistema() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        login.login();
     }
 
     @Quando("ele clica no botão Sair")
     public void ele_clica_no_botão_Sair() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        login.logout();
     }
 
     @Então("ele sera redirecionado para a pagina de login")
     public void ele_sera_redirecionado_para_a_pagina_de_login() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+       login.logoutSuccess();
+       login.quitWebDriver();
     }
 }
