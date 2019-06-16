@@ -41,4 +41,8 @@ public class LoginUtils extends AccessDriver {
         String url = webDriver.getCurrentUrl();
         Assert.assertEquals("http://184.107.94.164:21595/Senac/login.faces", url);
     }
+
+    public void logout() {
+        webDriver.findElement(By.cssSelector(".jr-menu > ul:nth-child(1) > li:nth-child(17)")).click();
+    }
 }

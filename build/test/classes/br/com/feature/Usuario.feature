@@ -7,27 +7,32 @@ Funcionalidade: Persistência de Usuário
 
   Contexto: 
     Dado que o usuário se encontra na tela listagem de usuários
-@cadastrar_usuario
+
+  @cadastrar_usuario
   Cenário: Cadastrar usuário
     Dado que o usuário clicou no botão novo
     E o usuário preencheu os campos corretamente
     Quando o usuário clicar no botão salvar
-    Então o sistema deverá cadastrar o novo usuário no banco de dados
-    E na próxima listagem o usuário recém cadastrado deverá aparecer
-@alterar_usuario
+    Então o novo  cadastro estará na listagem
+
+  @alterar_usuario
   Cenário: Alterar usuário
-    Dado que o usuário clicou no botão alterar
-    E o usuário alterou algum dos campos corretamente
+    Dado que o  usuário pesquisou o cadastro a ser alterado
+    E clicou no botão alterar
+    E alterou algum dos campos
     Quando o usuário clicar no botão salvar
-    Então o sistema deverá alterar o novo usuário no banco de dados
-    E na próxima listagem o usuário deverá apresentar os dados alterados
-@excluir_usuario
+    Então as alterações do cadastro será mostrado na listagem
+
+  @excluir_usuario
   Cenário: Excluir usuário
-    Dado que o usuário clicou no botão excluir
-    Quando o usuário clicar no botão sim na caixa de diálogo de confirmação
-    Então o sistema deverá excluir o usuário do banco de dados
-    E o usuário não deverá aparecer na próxima listagem
-@
-  Cenário: Ativação / Inativação de usuário
-    Quando que o usuário clicou no botão de alterar status de ativação
-    Então o status do usuário é alterado
+    Dado que o usuário pesquisou o cadastro a ser Excluído
+    E clicou no botão excluir
+    Quando o usuário confirmar a ação
+    Então o cadastro excluído não aparecera na listagem
+
+  @ativar_desativar_usuario
+  Cenário: Ativação ou Inativação de usuário
+    Dado que o  usuário pesquisou o cadastro a ser alterado
+    Quando o usuário clicar no botão ativar/desativar
+    E confirmar a ação
+    Então a situação do cadastro sera mudada

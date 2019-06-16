@@ -54,17 +54,12 @@ public class LoginStep {
         login.setSenha("12345");
     }
 
-    @Então("será apresentado ao usuário uma mensagem Dados Incorretos")
-    public void será_apresentado_ao_usuário_uma_mensagem_Dados_Incorretos() {
-        login.clickEntrar();
-    }
-
     @Dado("o usuário digitou uma senha invalida")
     public void o_usuário_digitou_uma_senha_invalida() {
         login.setSenha("senha");
     }
 
-    @Então("será apresentado ao usuário uma mensagem Dados incorretos")
+    @Então("será apresentado ao usuário uma mensagem Dados Incorretos")
     public void será_apresentado_ao_usuário_uma_mensagem_Dados_incorretos() {
         login.accessFailed();
         login.quitWebDriver();

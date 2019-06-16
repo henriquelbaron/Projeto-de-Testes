@@ -23,7 +23,7 @@ Funcionalidade: Login
     Dado que o usuário digitou um login valido
     E o usuário digitou uma senha invalida
     Quando o usuário clicar no botão Entrar
-    Então será apresentado ao usuário uma mensagem Dados incorretos
+    Então será apresentado ao usuário uma mensagem Dados Incorretos
 
 @login_logout
     Cenário: Validar logout do Sistema
