@@ -1,8 +1,10 @@
 # language: pt
+@ocupacao_sala
 Funcionalidade: Ocupação de salas
   Cadastro
   Alteração
   Exclusão
+  Verificar exibição da sala ocupada em Salas em Uso
 
   Contexto: 
     Dado que o usuário esta no menu Ocupação de Salas
@@ -39,5 +41,5 @@ Funcionalidade: Ocupação de salas
     Então ao listar, a ocupação da <sala> não será mostrada
 
     Exemplos: 
-      | sala |
-      |"1994" |
+      | sala   |
+      | "1994" |

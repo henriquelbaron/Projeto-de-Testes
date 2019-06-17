@@ -25,7 +25,7 @@ public class UsuarioUtils extends AccessDriver {
     private void findUser(String user) {
         webDriver.get(url);
         webDriver.findElement(By.id("form_pesquisa:nome_pesquisa")).sendKeys(user, Keys.ENTER);
-        wait(1000);
+        sleep(1000);
         String nome = webDriver.findElement(By.id("form_pesquisa:dadosUsuario_data")).findElement(By.tagName("tr")).findElement(By.tagName("td")).getText();
         Assert.assertEquals(user, nome);
     }
@@ -41,18 +41,18 @@ public class UsuarioUtils extends AccessDriver {
     }
 
     public void setTextFields() {
-        wait(1000);
+        sleep(1000);
         webDriver.findElement(By.name("form_pesquisa:nome")).sendKeys(usuario);
         webDriver.findElement(By.id("form_pesquisa:login")).sendKeys("oi@gmail.com", Keys.TAB);
 
         JavascriptExecutor jse = (JavascriptExecutor) webDriver;
         jse.executeScript("document.getElementById('form_pesquisa:perfill').click();");
-        wait(3000);
+        sleep(3000);
 //        webDriver.findElement(By.id("form_pesquisa:perfil_items")).sendKeys(Keys.DOWN,Keys.ENTER);
         jse.executeScript("document.getElementById('form_pesquisa:perfil_1').click();");
 //        Select combo = new Select(webDriver.findElement(By.id("form_pesquisa:perfil_input")));
 //        combo.selectByValue("1");
-        wait(500);
+        sleep(500);
 
     }
 
@@ -69,7 +69,7 @@ public class UsuarioUtils extends AccessDriver {
     }
 
     public void setAlterTextFields() {
-        wait(1000);
+        sleep(1000);
         WebElement nome = webDriver.findElement(By.name("form_pesquisa:nome"));
         nome.clear();
         usuario = "HenriqueAlterado";
@@ -107,7 +107,7 @@ public class UsuarioUtils extends AccessDriver {
 
     public void validExclusion() {
         webDriver.findElement(By.id("form_pesquisa:nome_pesquisa")).sendKeys(usuario, Keys.ENTER);
-        wait(1000);
+        sleep(1000);
         String nome = webDriver.findElement(By.id("form_pesquisa:dadosUsuario_data")).findElement(By.tagName("tr")).findElement(By.tagName("td")).getText();
         Assert.assertNotEquals(usuario, nome);
     }

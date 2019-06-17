@@ -44,9 +44,7 @@ public class AccessDriver {
         webDriver.findElement(By.tagName("button")).click();
     }
 
-    
-
-    public void wait(int tempo) {
+    public void sleep(int tempo) {
         try {
             Thread.sleep(tempo);
         } catch (InterruptedException e) {

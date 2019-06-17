@@ -1,4 +1,5 @@
 # language: pt
+@usuario
 Funcionalidade: Persistência de Usuário
   Cadastro de Usuários - O sistema deverá cadastrar um novo usuário com os dados fornecidos pelo usuário
   Alteração de Usuários - O sistema deverá alterar corretamente o usuário selecionado
