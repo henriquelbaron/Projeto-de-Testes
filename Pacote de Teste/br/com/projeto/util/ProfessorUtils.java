@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.util;
+package br.com.projeto.util;
 
 import cucumber.runtime.Utils;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class ProfessorUtils extends AccessDriver {
         sleep(1000);
     }
 
-    private List<WebElement> findSalaTemplate(String nome, String celular, String email) {
+    private List<WebElement> findProfessorTemplate(String nome, String celular, String email) {
         sleep(1000);
         List<WebElement> rows = webDriver.findElement(By.id("form_pesquisa:dadosProf_data"))
                 .findElements(By.tagName("tr"));
@@ -59,12 +59,13 @@ public class ProfessorUtils extends AccessDriver {
 
     public void setTextFields(String nome, String celular, String email) {
         webDriver.findElement(By.id("form_pesquisa:nome")).sendKeys(nome);
-        webDriver.findElement(By.id("form_pesquisa:foneMovel")).sendKeys(celular);
+        WebElement tfFone = webDriver.findElement(By.id("form_pesquisa:foneMovel"));
+        tfFone.click();
+        tfFone.sendKeys(celular);
         webDriver.findElement(By.id("form_pesquisa:email")).sendKeys(email);
     }
 
     public void saveClick() {
-
         webDriver.findElement(By.id("form_pesquisa:j_idt83")).click();
         sleep(500);
         menuClick();
@@ -78,7 +79,7 @@ public class ProfessorUtils extends AccessDriver {
     }
 
     public void validNewProfessor(String nome, String celular, String email) {
-        List<WebElement> columns = findSalaTemplate(nome, celular, email);
+        List<WebElement> columns = findProfessorTemplate(nome, celular, email);
         Assert.assertEquals(nome, columns.get(0).getText());
         Assert.assertEquals(email, columns.get(1).getText());
         Assert.assertEquals(celular, columns.get(2).getText().replaceAll("[^0-9]", ""));
@@ -100,7 +101,7 @@ public class ProfessorUtils extends AccessDriver {
 
     public void validModifyProfessor(String string) {
         findProfessor(string);
-        List<WebElement> columns = findSalaTemplate(string, null, null);
+        List<WebElement> columns = findProfessorTemplate(string, null, null);
         Assert.assertEquals(string, columns.get(0).getText());
     }
 
@@ -117,7 +118,36 @@ public class ProfessorUtils extends AccessDriver {
 
     public void validDeleteProfessor(String string) {
         findProfessor(string);
-        List<WebElement> columns = findSalaTemplate(string, null, null);
+        List<WebElement> columns = findProfessorTemplate(string, null, null);
         Assert.assertEquals(null, columns);
+    }
+
+    public void addDisciplina() {
+        webDriver.findElement(By.id("form_pesquisa:btAddDisc")).click();
+    }
+
+    public void setDisciplinaTf(String disciplina) {
+        List<WebElement> tfDisciplinas = webDriver.findElements(By.xpath("//*[@id=\"form_pesquisa:painelDisciplinas_content\"]//input"));
+        for (WebElement tfDisciplina : tfDisciplinas) {
+            if (tfDisciplina.getAttribute("value").equals("")) {
+                tfDisciplina.sendKeys(disciplina);
+            }
+        }
+    }
+
+    public void validNewDisciplina(String disciplina, String professor) {
+        menuClick();
+        findProfessor(professor);
+        List<WebElement> rows = webDriver.findElement(By.id("form_pesquisa:dadosProf_data"))
+                .findElements(By.tagName("tr"));
+        List<WebElement> rowMatches = null;
+        for (int i = 0; i < rows.size(); i++) {
+            List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
+            if (columns.get(0).getText().equals(professor)
+                    && columns.get(3).getText().contains(disciplina)) {
+                rowMatches = columns;
+            }
+        }
+        Assert.assertTrue(rowMatches.get(3).getText().contains(disciplina));
     }
 }

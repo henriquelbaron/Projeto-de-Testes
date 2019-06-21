@@ -21,8 +21,8 @@ Funcionalidade: Cadastro de professores
       | nome       | celular       | email             |
       | "Henrique" | "48996850322" | "email@gmail.com" |
       | "João"     | "48996850322" | "email@gmail.com" |
-      | "William"  | "48212341234"  | "email@gmail.com" |
-      | "Adriene"  | "48212341234"  | "email@gmail.com" |
+      | "William"  | "48212341234" | "email@gmail.com" |
+      | "Adriene"  | "48212341234" | "email@gmail.com" |
 
   @alterar_professor
   Esquema do Cenário: Alterar Professor
@@ -65,11 +65,10 @@ Funcionalidade: Cadastro de professores
   Esquema do Cenário: Excluir Disciplina do Professor
     Dado que o usuário pesquisou pelo <professor> desejado
     E clicou no botão Alterar
-    E clicou no botão Remover da disciplina desejada
+    E clicou no botão Remover da <disciplina>
     Quando o usuário clicar em Salvar
     Então a <disciplina> não sera mostrada ao pesquisa pelo <professor>
 
     Exemplos: 
-      | professor |
-      | "William" |
-      | "João"    |
+      | professor | disciplina |
+      | "William" | "POO"      |

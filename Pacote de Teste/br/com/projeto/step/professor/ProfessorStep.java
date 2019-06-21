@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.step.professor;
+package br.com.projeto.step.professor;
 
-import br.com.util.ProfessorUtils;
+import br.com.projeto.util.ProfessorUtils;
 import cucumber.api.java.es.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
@@ -88,5 +88,44 @@ public class ProfessorStep {
     @Então("o {string} não estará mais na listagem")
     public void o_não_estará_mais_na_listagem(String string) {
         componente.validDeleteProfessor(string);
+        componente.quitWebDriver();
+    }
+
+    @Dado("que o usuário pesquisou pelo {string} desejado")
+    public void que_o_usuário_pesquisou_pelo_desejado(String string) {
+        componente.findProfessor(string);
+    }
+
+    @Dado("clicou em Adicionar Disciplina")
+    public void clicou_em_Adicionar_Disciplina() {
+        componente.addDisciplina();
+    }
+
+    @Dado("preencheu o campo de texto com a {string}")
+    public void preencheu_o_campo_de_texto_com_a(String string) {
+        componente.setDisciplinaTf(string);
+    }
+
+    @Quando("o usuário clicar em Salvar")
+    public void o_usuário_clicar_em_Salvar() {
+        componente.saveClick();
+    }
+
+    @Então("a {string} sera mostrada ao pesquisa pelo {string}")
+    public void a_sera_mostrada_ao_pesquisa_pelo(String string, String string2) {
+        componente.validNewDisciplina(string, string2);
+        componente.quitWebDriver();
+    }
+
+    @Dado("clicou no botão Remover da {string}")
+    public void clicou_no_botão_Remover_da(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Então("a {string} não sera mostrada ao pesquisa pelo {string}")
+    public void a_não_sera_mostrada_ao_pesquisa_pelo(String string, String string2) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
     }
 }

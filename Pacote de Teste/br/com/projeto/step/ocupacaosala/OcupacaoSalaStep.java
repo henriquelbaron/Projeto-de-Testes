@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.step;
+package br.com.projeto.step.ocupacaosala;
 
-import br.com.util.OcupacaoSalaUtils;
+import br.com.projeto.util.OcupacaoSalaUtils;
 import cucumber.api.java.es.Dado;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Então;

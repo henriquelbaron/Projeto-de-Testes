@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.util;
+package br.com.projeto.util;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

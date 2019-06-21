@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.step;
+package br.com.projeto.step.login;
 
-import br.com.util.LoginUtils;
+import br.com.projeto.util.LoginUtils;
 import cucumber.api.java.es.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
