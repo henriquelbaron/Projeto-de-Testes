@@ -119,13 +119,11 @@ public class ProfessorStep {
 
     @Dado("clicou no botão Remover da {string}")
     public void clicou_no_botão_Remover_da(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+       componente.removeDisciplina(string);
     }
 
     @Então("a {string} não sera mostrada ao pesquisa pelo {string}")
     public void a_não_sera_mostrada_ao_pesquisa_pelo(String string, String string2) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        componente.validDeleteDisciplina(string,string);
     }
 }

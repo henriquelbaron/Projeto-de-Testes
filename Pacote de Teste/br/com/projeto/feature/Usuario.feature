@@ -25,11 +25,11 @@ Funcionalidade: Persistência de Usuário
 
   @alterar_usuario
   Esquema do Cenário: Alterar usuário
-    Dado que o  usuário pesquisou pelo <usuário>
+    Dado que o usuário pesquisou pelo <usuário>
     E clicou no botão alterar
     E alterou o <email>
     Quando o usuário clicar no botão salvar
-    Então o novo <email> sera mostrado ao pesquisar pelo usuário alterado
+    Então o novo <email> sera mostrado ao pesquisar pelo <usuário> alterado
 
     Exemplos: 
       | usuário    | email                |
@@ -37,7 +37,7 @@ Funcionalidade: Persistência de Usuário
 
   @excluir_usuario
   Esquema do Cenário: Excluir usuário
-    Dado que o usuário pesquisou pelo <usuário>
+    Dado que o usuário pesquisou pelo <usuário> a ser Excluido
     E clicou no botão excluir
     Quando o usuário confirmar a ação
     Então o <usuário> não estará mais na listagem
@@ -51,7 +51,7 @@ Funcionalidade: Persistência de Usuário
     Dado que o usuário pesquisou pelo <usuário>
     Quando o usuário clicar no botão ativar/desativar
     E confirmar a ação
-    Então a situação do cadastro sera mudada
+    Então a situação do <usuário> sera mudada
 
     Exemplos: 
       | usuário   |

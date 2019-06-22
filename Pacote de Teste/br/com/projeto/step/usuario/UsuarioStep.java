@@ -49,87 +49,61 @@ public class UsuarioStep {
         componente.quitWebDriver();
     }
 
-//    @Dado("que o usuário se encontra na tela listagem de usuários")
-//    public void que_o_usuário_se_encontra_na_tela_listagem_de_usuários() {
-//        componente.getAccess();
-//    }
-//
-//    @Dado("que o usuário clicou no botão novo")
-//    public void que_o_usuário_clicou_no_botão_novo() {
-//        componente.novoClick();
-//    }
-//
-//    @Dado("o usuário preencheu os campos corretamente")
-//    public void o_usuário_preencheu_os_campos_corretamente() {
-//        componente.setTextFields();
-//    }
-//
-//    @Quando("o usuário clicar no botão salvar")
-//    public void o_usuário_clicar_no_botão_salvar() {
-//        componente.salvarClick();
-//    }
-//
-//    @Então("o novo  cadastro estará na listagem")
-//    public void o_novo_cadastro_estará_na_listagem() {
-//        componente.validNewUser();
-//        componente.quitWebDriver();
-//    }
-//
-//    @Dado("que o  usuário pesquisou o cadastro a ser alterado")
-//    public void que_o_usuário_pesquisou_o_cadastro_a_ser_alterado() {
-//        componente.findUser();
-//    }
-//
-//    @Dado("clicou no botão alterar")
-//    public void clicou_no_botão_alterar() {
-//        componente.alterarClick();
-//    }
-//
-//    @Dado("alterou algum dos campos")
-//    public void alterou_algum_dos_campos() {
-//        componente.setAlterTextFields();
-//    }
-//
-//    @Então("as alterações do cadastro será mostrado na listagem")
-//    public void as_alterações_do_cadastro_será_mostrado_na_listagem() {
-//        componente.validChangeUser();
-//        componente.quitWebDriver();
-//    }
-//
-//    @Quando("o usuário clicar no botão ativar\\/desativar")
-//    public void o_usuário_clicar_no_botão_ativar_desativar() {
-//        componente.situacaoClick();
-//    }
-//
-//    @Quando("confirmar a ação")
-//    public void confirmar_a_ação() {
-//        componente.confirmChange();
-//    }
-//
-//    @Então("a situação do cadastro sera mudada")
-//    public void a_situação_do_cadastro_sera_mudada() {
-//        componente.validSituation();
-//        componente.quitWebDriver();
-//    }
-//
-//    @Dado("que o usuário pesquisou o cadastro a ser Excluído")
-//    public void que_o_usuário_pesquisou_o_cadastro_a_ser_Excluído() {
-//        componente.findUser();
-//    }
-//
-//    @Dado("clicou no botão excluir")
-//    public void clicou_no_botão_excluir() {
-//        componente.clickDelete();
-//    }
-//
-//    @Quando("o usuário confirmar a ação")
-//    public void o_usuário_confirmar_a_ação() {
-//        componente.confirmDelete();
-//    }
-//
-//    @Então("o cadastro excluído não aparecera na listagem")
-//    public void o_cadastro_excluído_não_aparecera_na_listagem() {
-//        componente.validExclusion();
-//        componente.quitWebDriver();
-//    }
+    @Dado("que o usuário pesquisou pelo {string}")
+    public void que_o_usuário_pesquisou_pelo(String string) {
+        componente.findUser(string);
+    }
+
+    @Dado("clicou no botão alterar")
+    public void clicou_no_botão_alterar() {
+        componente.alterarClick();
+    }
+
+    @Dado("alterou o {string}")
+    public void alterou_o(String string) {
+        componente.setAlterTextFields(string);
+    }
+
+    @Então("o novo {string} sera mostrado ao pesquisar pelo {string} alterado")
+    public void o_novo_sera_mostrado_ao_pesquisar_pelo_alterado(String string, String string2) {
+        componente.validChangeUser(string, string2);
+        componente.quitWebDriver();
+    }
+
+    @Dado("que o usuário pesquisou pelo {string} a ser Excluido")
+    public void que_o_usuário_pesquisou_pelo_a_ser_Excluido(String string) {
+        componente.findUser(string);
+    }
+
+    @Dado("clicou no botão excluir")
+    public void clicou_no_botão_excluir() {
+        componente.clickDelete();
+    }
+
+    @Quando("o usuário confirmar a ação")
+    public void o_usuário_confirmar_a_ação() {
+        componente.confirmDelete();
+    }
+
+    @Então("o {string} não estará mais na listagem")
+    public void o_não_estará_mais_na_listagem(String string) {
+        componente.validExclusion(string);
+        componente.quitWebDriver();
+    }
+
+    @Quando("o usuário clicar no botão ativar\\/desativar")
+    public void o_usuário_clicar_no_botão_ativar_desativar() {
+        componente.clickSituacao();
+    }
+
+    @Quando("confirmar a ação")
+    public void confirmar_a_ação() {
+        componente.confirmChange();
+    }
+
+    @Então("a situação do {string} sera mudada")
+    public void a_situação_do_sera_mudada(String string) {
+        componente.validSituation(string);
+        componente.quitWebDriver();
+    }
 }

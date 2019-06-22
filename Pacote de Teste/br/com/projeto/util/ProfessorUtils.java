@@ -21,12 +21,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
  * @author henrique
  */
 public class ProfessorUtils extends AccessDriver {
-
+    
     private void menuClick() {
         webDriver.findElement(By.cssSelector(".jr-menu > ul:nth-child(1) > li:nth-child(12) > a:nth-child(1)")).click();
         sleep(1000);
     }
-
+    
     private List<WebElement> findProfessorTemplate(String nome, String celular, String email) {
         sleep(1000);
         List<WebElement> rows = webDriver.findElement(By.id("form_pesquisa:dadosProf_data"))
@@ -45,18 +45,18 @@ public class ProfessorUtils extends AccessDriver {
         }
         return rowMatches;
     }
-
+    
     public void getAccess() {
         initDriver();
         login();
         menuClick();
     }
-
+    
     public void newClick() {
         webDriver.findElement(By.id("form_pesquisa:j_idt81")).click();
         sleep(1000);
     }
-
+    
     public void setTextFields(String nome, String celular, String email) {
         webDriver.findElement(By.id("form_pesquisa:nome")).sendKeys(nome);
         WebElement tfFone = webDriver.findElement(By.id("form_pesquisa:foneMovel"));
@@ -64,32 +64,34 @@ public class ProfessorUtils extends AccessDriver {
         tfFone.sendKeys(celular);
         webDriver.findElement(By.id("form_pesquisa:email")).sendKeys(email);
     }
-
+    
     public void saveClick() {
         webDriver.findElement(By.id("form_pesquisa:j_idt83")).click();
         sleep(500);
         menuClick();
     }
-
+    
     public void findProfessor(String nome) {
         WebElement textFieldPesquisa = webDriver.findElement(By.id("form_pesquisa:pesqNome"));
         textFieldPesquisa.sendKeys(nome);
         textFieldPesquisa.sendKeys(Keys.ENTER);
         sleep(1000);
     }
-
+    
     public void validNewProfessor(String nome, String celular, String email) {
         List<WebElement> columns = findProfessorTemplate(nome, celular, email);
         Assert.assertEquals(nome, columns.get(0).getText());
         Assert.assertEquals(email, columns.get(1).getText());
         Assert.assertEquals(celular, columns.get(2).getText().replaceAll("[^0-9]", ""));
     }
-
+    
     public void changeClick() {
-        webDriver.findElement(By.id("form_pesquisa:dadosProf:0:j_idt100")).click();
+        WebElement alterarButton = webDriver.findElement(By.id("form_pesquisa:dadosProf:0:j_idt100"));
+        alterarButton.submit();
+        webDriver.findElement(By.cssSelector("#form_pesquisa\\:dadosProf\\:0\\:j_idt100")).click();
         sleep(1000);
     }
-
+    
     public void modifyTextFields(String string, String string2) {
         WebElement textFieldNome = webDriver.findElement(By.id("form_pesquisa:nome"));
         textFieldNome.clear();
@@ -98,34 +100,34 @@ public class ProfessorUtils extends AccessDriver {
         textFieldEmail.clear();
         textFieldEmail.sendKeys(string2);
     }
-
+    
     public void validModifyProfessor(String string) {
         findProfessor(string);
         List<WebElement> columns = findProfessorTemplate(string, null, null);
         Assert.assertEquals(string, columns.get(0).getText());
     }
-
+    
     public void deleteClick() {
         webDriver.findElement(By.id("form_pesquisa:dadosProf:0:j_idt101")).click();
         sleep(500);
     }
-
+    
     public void confirmAction() {
         webDriver.switchTo();
         webDriver.findElement(By.id("form_pesquisa:j_idt103")).click();
         sleep(1000);
     }
-
+    
     public void validDeleteProfessor(String string) {
         findProfessor(string);
         List<WebElement> columns = findProfessorTemplate(string, null, null);
         Assert.assertEquals(null, columns);
     }
-
+    
     public void addDisciplina() {
         webDriver.findElement(By.id("form_pesquisa:btAddDisc")).click();
     }
-
+    
     public void setDisciplinaTf(String disciplina) {
         List<WebElement> tfDisciplinas = webDriver.findElements(By.xpath("//*[@id=\"form_pesquisa:painelDisciplinas_content\"]//input"));
         for (WebElement tfDisciplina : tfDisciplinas) {
@@ -134,10 +136,32 @@ public class ProfessorUtils extends AccessDriver {
             }
         }
     }
-
+    
     public void validNewDisciplina(String disciplina, String professor) {
         menuClick();
         findProfessor(professor);
+        String tableDisciplina = searchDisciplina(disciplina, professor);
+        Assert.assertTrue(tableDisciplina.contains(disciplina));
+    }
+    
+    public void removeDisciplina(String disciplina) {
+        List<WebElement> tfDisciplinas = webDriver.findElements(By.xpath("//*[@id=\"form_pesquisa:painelDisciplinas_content\"]//input"));
+        for (WebElement tfDisciplina : tfDisciplinas) {
+            if (tfDisciplina.getAttribute("value").equals(disciplina)) {
+                webDriver.findElement(By.id(disciplina));
+            }
+        }
+        
+    }
+    
+    public void validDeleteDisciplina(String disciplina, String professor) {
+        menuClick();
+        findProfessor(professor);
+        String tableDisciplina = searchDisciplina(disciplina, professor);
+        Assert.assertTrue(tableDisciplina == null);
+    }
+    
+    private String searchDisciplina(String disciplina, String professor) {
         List<WebElement> rows = webDriver.findElement(By.id("form_pesquisa:dadosProf_data"))
                 .findElements(By.tagName("tr"));
         List<WebElement> rowMatches = null;
@@ -145,9 +169,9 @@ public class ProfessorUtils extends AccessDriver {
             List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
             if (columns.get(0).getText().equals(professor)
                     && columns.get(3).getText().contains(disciplina)) {
-                rowMatches = columns;
+                return columns.get(3).getText();
             }
         }
-        Assert.assertTrue(rowMatches.get(3).getText().contains(disciplina));
+        return null;
     }
 }

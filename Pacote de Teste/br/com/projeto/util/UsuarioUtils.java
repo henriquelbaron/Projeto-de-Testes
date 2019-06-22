@@ -6,6 +6,7 @@
 package br.com.projeto.util;
 
 import java.util.List;
+import javax.swing.text.html.Option;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -29,27 +30,22 @@ public class UsuarioUtils extends AccessDriver {
         List<WebElement> rowMatches = null;
         for (int i = 0; i < rows.size(); i++) {
             List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
-            if (nome != null) {
+            if (nome == null) {
+                if (columns.get(1).getText().equals(email)) {
+                    rowMatches = columns;
+                }
+            } else if (email == null) {
+                if (columns.get(0).getText().equals(nome)) {
+                    rowMatches = columns;
+                }
+            } else {
                 if (columns.get(0).getText().equals(nome) && columns.get(1).getText().equals(email)) {
-                    return rowMatches = columns;
-                } else {
-                    if (columns.get(1).getText().equals(email)) {
-                        return rowMatches = columns;
-                    }
+                    rowMatches = columns;
                 }
             }
         }
         return rowMatches;
     }
-
-//    private void findUser(String user) {
-//        webDriver.get(url);
-//        webDriver.findElement(By.id("form_pesquisa:nome_pesquisa")).sendKeys(user, Keys.ENTER);
-//        sleep(1000);
-//        List<WebElement> columns = findUsuarioTemplate(user, email);
-//        Assert.assertEquals(user, columns.get(0).getText());
-//        Assert.assertEquals(email, columns.get(1).getText());
-//    }
 
     public void getAccess() {
         initDriver();
@@ -65,9 +61,6 @@ public class UsuarioUtils extends AccessDriver {
         sleep(1000);
         webDriver.findElement(By.name("form_pesquisa:nome")).sendKeys(nome);
         webDriver.findElement(By.id("form_pesquisa:login")).sendKeys(email, Keys.TAB);
-        WebElement combo = webDriver.findElement(By.id("form_pesquisa:perfil_label"));
-        combo.click();
-        webDriver.findElement(By.id("form_pesquisa:perfil_1")).click();
         sleep(500);
 
     }
@@ -91,20 +84,24 @@ public class UsuarioUtils extends AccessDriver {
 
     public void setAlterTextFields(String email) {
         sleep(1000);
-        WebElement tfNome = webDriver.findElement(By.name("form_pesquisa:nome"));
+        WebElement tfNome = webDriver.findElement(By.name("form_pesquisa:login"));
         tfNome.clear();
         tfNome.sendKeys(email);
     }
-//
-//    public void validChangeUser() {
-//        findUser(usuario);
-//    }
 
-//    public void findUser() {
-//        findUser(usuario);
-//        situacao = webDriver.findElement(By.id("form_pesquisa:dadosUsuario_data"))
-//                .findElement(By.tagName("tr")).findElements(By.tagName("td")).get(3).getText();
-//    }
+    public void validChangeUser(String email, String usario) {
+        findUser(usario);
+        List<WebElement> columns = findUsuarioTemplate(usario, email);
+        Assert.assertEquals(email, columns.get(1).getText());
+    }
+
+    public void findUser(String usuario) {
+        webDriver.get(url);
+        webDriver.findElement(By.id("form_pesquisa:nome_pesquisa")).sendKeys(usuario, Keys.ENTER);
+        sleep(1000);
+        situacao = webDriver.findElement(By.id("form_pesquisa:dadosUsuario_data"))
+                .findElement(By.tagName("tr")).findElements(By.tagName("td")).get(3).getText();
+    }
 
     public void situacaoClick() {
         webDriver.findElement(By.id("form_pesquisa:dadosUsuario:0:j_idt104")).click();
@@ -115,19 +112,22 @@ public class UsuarioUtils extends AccessDriver {
         webDriver.findElement(By.id("form_pesquisa:j_idt106")).click();
     }
 
-//    public void validSituation() {
-//        findUser(usuario);
-//        String situacaoAtual = webDriver.findElement(By.id("form_pesquisa:dadosUsuario_data"))
-//                .findElement(By.tagName("tr")).findElements(By.tagName("td")).get(3).getText();
-//        Assert.assertNotEquals(situacaoAtual, situacao);
-//    }
-//
-//    public void validExclusion() {
-//        webDriver.findElement(By.id("form_pesquisa:nome_pesquisa")).sendKeys(usuario, Keys.ENTER);
-//        sleep(1000);
-//        String nome = webDriver.findElement(By.id("form_pesquisa:dadosUsuario_data")).findElement(By.tagName("tr")).findElement(By.tagName("td")).getText();
-//        Assert.assertNotEquals(usuario, nome);
-//    }
+    public void validSituation(String usuario) {
+        webDriver.get(url);
+        webDriver.findElement(By.id("form_pesquisa:nome_pesquisa")).sendKeys(usuario, Keys.ENTER);
+        sleep(1000);
+        String situacaoAtual = webDriver.findElement(By.id("form_pesquisa:dadosUsuario_data"))
+                .findElement(By.tagName("tr")).findElements(By.tagName("td")).get(3).getText();
+        Assert.assertNotEquals(situacaoAtual, situacao);
+    }
+
+    public void validExclusion(String usuario) {
+        webDriver.get(url);
+        webDriver.findElement(By.id("form_pesquisa:nome_pesquisa")).sendKeys(usuario, Keys.ENTER);
+        sleep(1000);
+        String nome = webDriver.findElement(By.id("form_pesquisa:dadosUsuario_data")).findElement(By.tagName("tr")).findElement(By.tagName("td")).getText();
+        Assert.assertNotEquals(usuario, nome);
+    }
 
     public void confirmDelete() {
         webDriver.findElement(By.id("form_pesquisa:j_idt106")).click();
@@ -137,10 +137,18 @@ public class UsuarioUtils extends AccessDriver {
         webDriver.findElement(By.id("form_pesquisa:dadosUsuario:0:j_idt103")).click();
     }
 
+    public void clickSituacao() {
+        webDriver.findElement(By.id("form_pesquisa:dadosUsuario:0:j_idt104")).click();
+    }
+
     public void selectPerfil() {
         sleep(400);
-        webDriver.findElement(By.id("form_pesquisa:perfil_label")).click();
-        webDriver.findElement(By.id("form_pesquisa:perfil_1")).click();
+        webDriver.findElement(By.id("form_pesquisa:perfil_input")).submit();
+        WebElement elemento = webDriver.findElement(By.id("form_pesquisa:perfil_input"));
+        Select combo = new Select(elemento);
+        combo.getOptions();
+        combo.selectByVisibleText("Admin");
         sleep(400);
     }
+
 }
