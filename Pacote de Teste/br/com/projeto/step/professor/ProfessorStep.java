@@ -64,9 +64,9 @@ public class ProfessorStep {
         componente.modifyTextFields(string, string2);
     }
 
-    @Então("as novas informações do {string} serão mostradas na listagem")
-    public void as_novas_informações_do_serão_mostradas_na_listagem(String string) {
-        componente.validModifyProfessor(string);
+    @Então("as novas informações {string} e {string} serão mostradas na listagem")
+    public void as_novas_informações_e_serão_mostradas_na_listagem(String string, String string2) {
+        componente.validModifyProfessor(string, string2);
         componente.quitWebDriver();
     }
 
@@ -119,11 +119,11 @@ public class ProfessorStep {
 
     @Dado("clicou no botão Remover da {string}")
     public void clicou_no_botão_Remover_da(String string) {
-       componente.removeDisciplina(string);
+        componente.removeDisciplina(string);
     }
 
     @Então("a {string} não sera mostrada ao pesquisa pelo {string}")
     public void a_não_sera_mostrada_ao_pesquisa_pelo(String string, String string2) {
-        componente.validDeleteDisciplina(string,string);
+        componente.validDeleteDisciplina(string, string);
     }
 }

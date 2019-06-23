@@ -5,16 +5,12 @@
  */
 package br.com.projeto.util;
 
-import cucumber.runtime.Utils;
-import java.util.ArrayList;
 import java.util.List;
 import junit.framework.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 /**
  *
@@ -87,8 +83,9 @@ public class ProfessorUtils extends AccessDriver {
     
     public void changeClick() {
         WebElement alterarButton = webDriver.findElement(By.id("form_pesquisa:dadosProf:0:j_idt100"));
-        alterarButton.submit();
-        webDriver.findElement(By.cssSelector("#form_pesquisa\\:dadosProf\\:0\\:j_idt100")).click();
+        alterarButton.click();
+        sleep(450);
+        alterarButton.click();
         sleep(1000);
     }
     
@@ -101,10 +98,11 @@ public class ProfessorUtils extends AccessDriver {
         textFieldEmail.sendKeys(string2);
     }
     
-    public void validModifyProfessor(String string) {
-        findProfessor(string);
-        List<WebElement> columns = findProfessorTemplate(string, null, null);
-        Assert.assertEquals(string, columns.get(0).getText());
+    public void validModifyProfessor(String nome,String email) {
+        findProfessor(nome);
+        List<WebElement> columns = findProfessorTemplate(nome, null, email);
+        Assert.assertEquals(nome, columns.get(0).getText());
+        Assert.assertEquals(email, columns.get(1).getText());
     }
     
     public void deleteClick() {
@@ -112,9 +110,10 @@ public class ProfessorUtils extends AccessDriver {
         sleep(500);
     }
     
-    public void confirmAction() {
+    public void confirmAction(                                              ) {
         webDriver.switchTo();
-        webDriver.findElement(By.id("form_pesquisa:j_idt103")).click();
+         JavascriptExecutor js = (JavascriptExecutor) webDriver;
+        js.executeScript("window.document.getElementById('form_pesquisa:j_idt103').click()");
         sleep(1000);
     }
     

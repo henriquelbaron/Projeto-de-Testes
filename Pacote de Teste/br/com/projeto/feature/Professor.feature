@@ -30,7 +30,7 @@ Funcionalidade: Cadastro de professores
     E clicou no botão Alterar
     E alterou os campos <nome> e <email>
     Quando o usuário clicar no botão Salvar
-    Então as novas informações do <professor> serão mostradas na listagem
+    Então as novas informações <nome> e <email> serão mostradas na listagem
 
     Exemplos: 
       | professor  | nome             | email            |
