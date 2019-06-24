@@ -82,13 +82,21 @@ public class SuporteTecnicoStep {
 
     @Quando("o usuário confirmar a exclusão")
     public void o_usuário_confirmar_a_exclusão() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        componente.confirmDelete();
     }
 
-    @Então("não ha {string}")
-    public void não_ha(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Então("não tera resultados ao pesquisar pelo {string}")
+    public void não_tera_resultados_ao_pesquisar_pelo(String string) {
+        componente.validDelete(string);
+    }
+
+    @Quando("o usuário clicar no botão pesquisar")
+    public void o_usuário_clicar_no_botão_pesquisar() {
+        componente.findResponsavel("");
+    }
+
+    @Então("o sistema deverá listar todos os suportes técnicos")
+    public void o_sistema_deverá_listar_todos_os_suportes_técnicos() {
+        componente.validListagem();
     }
 }

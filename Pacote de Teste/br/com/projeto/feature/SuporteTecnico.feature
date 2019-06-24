@@ -34,7 +34,7 @@ Funcionalidade: Validar cadastro, edição e exclusão de suporte técnico, List
     Dado que o usuário pesquisou o <suporte> a ser excluído
     Quando o usuário clicar no botão excluir suporte técnico
     E o usuário confirmar a exclusão
-    Então não ha <suporte>
+    Então não tera resultados ao pesquisar pelo <suporte>
 
     Exemplos: 
       | suporte          |
@@ -43,5 +43,4 @@ Funcionalidade: Validar cadastro, edição e exclusão de suporte técnico, List
   @listar_suporte_tecnico
   Cenário: Validar listagem de suporte técnico
     Quando o usuário clicar no botão pesquisar
-    E o campo de pesquisa de suporte técnico estiver vazio
     Então o sistema deverá listar todos os suportes técnicos

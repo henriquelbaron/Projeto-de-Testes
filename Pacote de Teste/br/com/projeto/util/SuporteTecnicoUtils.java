@@ -36,13 +36,15 @@ public class SuporteTecnicoUtils extends AccessDriver {
         List<WebElement> rowMatches = null;
         for (int i = 0; i < rows.size(); i++) {
             List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
-            if (setor == null) {
-                if (columns.get(2).getText().equals(email)) {
-                    return rowMatches = columns;
-                }
-            } else {
-                if (columns.get(2).getText().equals(email) && columns.get(1).getText().equals(setor)) {
-                    return rowMatches = columns;
+            if (columns.size() > 1) {
+                if (setor == null) {
+                    if (columns.get(2).getText().equals(email)) {
+                        return rowMatches = columns;
+                    }
+                } else {
+                    if (columns.get(2).getText().equals(email) && columns.get(1).getText().equals(setor)) {
+                        return rowMatches = columns;
+                    }
                 }
             }
         }
@@ -51,6 +53,7 @@ public class SuporteTecnicoUtils extends AccessDriver {
 
     public void findResponsavel(String responsavel) {
         getMenu();
+        sleep(500);
         elemento = webDriver.findElement(By.id("form_pesquisa:usuario"));
         elemento.sendKeys(responsavel);
         elemento.sendKeys(Keys.ENTER);
@@ -91,19 +94,42 @@ public class SuporteTecnicoUtils extends AccessDriver {
 
     public void clickAlterar() {
         sleep(1000);
-        elemento = webDriver.findElement(By.id("form_pesquisa:dadosTabela:1:j_idt94"));
+        elemento = webDriver.findElement(By.id("form_pesquisa:dadosTabela:0:j_idt94"));
         elemento.click();
     }
 
     public void validAlterSuporte(String setor, String responsavel) {
         findResponsavel(responsavel);
         List<WebElement> columns = checkUsuario(responsavel, setor);
-        Assert.assertEquals(responsavel, columns.get(1).getText());
+        Assert.assertEquals(setor, columns.get(1).getText());
     }
 
-    public void changeSetorUser(String responsavel, String setor) {
+    public void changeSetorUser(String setor, String responsavel) {
         selectSetor(setor);
         setUsuario(responsavel);
+    }
+
+    public void clickDelete() {
+        sleep(500);
+        elemento = webDriver.findElement(By.id("form_pesquisa:dadosTabela:0:j_idt95"));
+        elemento.click();
+        sleep(500);
+    }
+
+    public void confirmDelete() {
+        elemento = webDriver.findElement(By.id("form_pesquisa:j_idt97"));
+        elemento.click();
+        sleep(500);
+    }
+
+    public void validDelete(String suporte) {
+        findResponsavel(suporte);
+        Assert.assertEquals(null, checkUsuario(suporte, null));
+    }
+
+    public void validListagem() {
+        List<WebElement> rows = webDriver.findElement(By.id("form_pesquisa:dadosTabela_data")).findElements(By.tagName("tr"));
+        Assert.assertTrue(rows.size() > 1);
     }
 
 }
