@@ -6,14 +6,16 @@ Funcionalidade: Validar cadastro, edição e exclusão de suporte técnico
     Dado que o usuário encontra-se na tela de listagem de suporte técnico
 
   @cadastrar_suporte_tecnico
-  Cenário: Validar cadastro de suporte técnico
+  Esquema do Cenário: Validar cadastro de suporte técnico
     Dado que o usuário clicou no botão novo
     E selecionou um <setor>
     E preencheu <responsável>
     Quando o usuário clicar no botão salvar
-E pelo <responsável>
-    Então ao pesquisar <responsável>
-    
+    Então o suporte sera mostrado ao pesquisar pelo <responsável>
+
+    Exemplos: 
+      | setor | responsável |
+      | ""    | ""          |
 
   @alterar_suporte_tecnico
   Cenário: Validar edição de suporte técnico

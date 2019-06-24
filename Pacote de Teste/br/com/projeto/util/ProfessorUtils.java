@@ -131,7 +131,8 @@ public class ProfessorUtils extends AccessDriver {
     }
 
     public void setDisciplinaTf(String disciplina) {
-        WebElement elemento = webDriver.findElement(By.id("form_pesquisa:painelDisciplinas_content"));
+        WebElement elemento = webDriver.findElement(By.id("form_pesquisa:j_idt112:0:j_idt115"));
+        sleep(500);
         elemento.sendKeys(disciplina);
     }
 
