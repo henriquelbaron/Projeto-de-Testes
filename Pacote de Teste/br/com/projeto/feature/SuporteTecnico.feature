@@ -1,6 +1,6 @@
 # language: pt
 @suporte_tecnico
-Funcionalidade: Validar cadastro, edição e exclusão de suporte técnico
+Funcionalidade: Validar cadastro, edição e exclusão de suporte técnico, Listagem
 
   Contexto: 
     Dado que o usuário encontra-se na tela de listagem de suporte técnico
@@ -14,8 +14,8 @@ Funcionalidade: Validar cadastro, edição e exclusão de suporte técnico
     Então o suporte sera mostrado ao pesquisar pelo <responsável>
 
     Exemplos: 
-      | setor | responsável |
-      | ""    | ""          |
+      | setor         | responsável       |
+      | "Atendimento" | "sala@gmail.com	" |
 
   @alterar_suporte_tecnico
   Cenário: Validar edição de suporte técnico

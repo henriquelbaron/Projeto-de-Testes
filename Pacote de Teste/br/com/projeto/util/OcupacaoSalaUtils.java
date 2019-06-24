@@ -51,22 +51,6 @@ public class OcupacaoSalaUtils extends AccessDriver {
                 periodo1.click();
             }
         }
-//        webDriver.findElement(By.id("form_salvar:listaDeClassesDisponiveis")).click();
-//        WebElement elemento = null;
-//        WebElement comboImput = webDriver.findElement(By.id("form_salvar:listaDeClassesDisponiveis_input"));
-//        List<WebElement> elementos = webDriver.findElements(By.xpath("//*[@id=\"form_salvar:listaDeClassesDisponiveis_panel\"]//li"));
-//        for (WebElement webElement : elementos) {
-//            if (webElement.getText().equals(disponivel)) {
-//                elemento = webElement;
-//            }
-//        }
-//        Actions actions = new Actions(webDriver);
-//        actions.moveToElement(elemento);
-//
-//        webDriver.switchTo().activeElement();
-//        Select combo = new Select(comboImput);
-//        sleep(500);
-//        combo.selectByVisibleText(disponivel);
     }
 
     public void salvarClick() {

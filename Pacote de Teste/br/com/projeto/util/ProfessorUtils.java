@@ -116,7 +116,6 @@ public class ProfessorUtils extends AccessDriver {
         webDriver.switchTo();
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         js.executeScript("window.document.getElementById('form_pesquisa:j_idt103').click()");
-        webDriver.findElement(By.id("form_pesquisa:j_idt103")).click();
         sleep(1000);
     }
 
@@ -131,6 +130,7 @@ public class ProfessorUtils extends AccessDriver {
     }
 
     public void setDisciplinaTf(String disciplina) {
+        sleep(500);
         WebElement elemento = webDriver.findElement(By.id("form_pesquisa:j_idt112:0:j_idt115"));
         sleep(500);
         elemento.sendKeys(disciplina);
@@ -144,7 +144,9 @@ public class ProfessorUtils extends AccessDriver {
     }
 
     public void removeDisciplina(String disciplina) {
+        sleep(500);
         webDriver.findElement(By.id("form_pesquisa:j_idt112:0:btRemDisc")).click();
+        sleep(500);
     }
 
     public void validDeleteDisciplina(String disciplina, String professor) {
