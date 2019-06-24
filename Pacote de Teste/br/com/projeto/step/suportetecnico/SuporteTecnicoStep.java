@@ -48,4 +48,25 @@ public class SuporteTecnicoStep {
         componente.validNewSuporte(string);
         componente.quitWebDriver();
     }
+
+    @Dado("que o usuário pesquisou o {string} a ser alterado")
+    public void que_o_usuário_pesquisou_o_a_ser_alterado(String string) {
+        componente.findResponsavel(string);
+    }
+
+    @Dado("clicou no botão alterar")
+    public void clicou_no_botão_alterar() {
+        componente.clickAlterar();
+    }
+
+    @Dado("trocou o {string}")
+    public void trocou_o(String string) {
+        componente.selectSetor(string);
+    }
+
+    @Então("o {string} sera mostrado ao pesquisar pelo {string}")
+    public void o_sera_mostrado_ao_pesquisar_pelo(String string, String string2) {
+        componente.validAlterSuporte(string, string2);
+        componente.quitWebDriver();
+    }
 }

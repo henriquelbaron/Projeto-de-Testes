@@ -30,20 +30,26 @@ public class SuporteTecnicoUtils extends AccessDriver {
         webDriver.get("http://184.107.94.164:21595/Senac/administrador/suporteTecnico.faces");
     }
 
-    private List<WebElement> checkUsuario(String email) {
+    private List<WebElement> checkUsuario(String email, String setor) {
         sleep(1000);
         List<WebElement> rows = webDriver.findElement(By.id("form_pesquisa:dadosTabela_data")).findElements(By.tagName("tr"));
         List<WebElement> rowMatches = null;
         for (int i = 0; i < rows.size(); i++) {
             List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
-            if (columns.get(2).getText().equals(email)) {
-                return rowMatches = columns;
+            if (setor == null) {
+                if (columns.get(2).getText().equals(email)) {
+                    return rowMatches = columns;
+                }
+            } else {
+                if (columns.get(2).getText().equals(email) && columns.get(1).getText().equals(setor)) {
+                    return rowMatches = columns;
+                }
             }
         }
         return rowMatches;
     }
 
-    private void findResponsavel(String responsavel) {
+    public void findResponsavel(String responsavel) {
         getMenu();
         elemento = webDriver.findElement(By.id("form_pesquisa:usuario"));
         elemento.sendKeys(responsavel);
@@ -56,6 +62,7 @@ public class SuporteTecnicoUtils extends AccessDriver {
     }
 
     public void selectSetor(String setor) {
+        sleep(1000);
         webDriver.findElement(By.id("form_pesquisa:setor_input")).submit();
         sleep(400);
         elemento = webDriver.findElement(By.id("form_pesquisa:setor_input"));
@@ -76,9 +83,21 @@ public class SuporteTecnicoUtils extends AccessDriver {
     }
 
     public void validNewSuporte(String responsavel) {
+        responsavel = responsavel.trim();
         findResponsavel(responsavel);
-        List<WebElement> columns = checkUsuario(responsavel);
-        Assert.assertEquals(responsavel, columns.get(3).getText());
+        List<WebElement> columns = checkUsuario(responsavel, null);
+        Assert.assertEquals(responsavel, columns.get(2).getText());
+    }
+
+    public void clickAlterar() {
+        elemento = webDriver.findElement(By.id("form_pesquisa:dadosTabela:1:j_idt94"));
+        elemento.click();
+    }
+
+    public void validAlterSuporte(String setor, String responsavel) {
+        findResponsavel(responsavel);
+        List<WebElement> columns = checkUsuario(responsavel, setor);
+        Assert.assertEquals(responsavel, columns.get(1).getText());
     }
 
 }

@@ -18,11 +18,16 @@ Funcionalidade: Validar cadastro, edição e exclusão de suporte técnico, List
       | "Atendimento" | "sala@gmail.com	" |
 
   @alterar_suporte_tecnico
-  Cenário: Validar edição de suporte técnico
-    Dado que o usuário clicou no botão alterar
-    E editou os dados do suporte técnico
+  Esquema do Cenário: Validar edição de suporte técnico
+    Dado que o usuário pesquisou o <suporte> a ser alterado
+    E clicou no botão alterar
+    E trocou o <setor>
     Quando o usuário clicar no botão salvar
-    Então o sistema deverá alterar os dados que foram cadastrados
+    Então o <setor> sera mostrado ao pesquisar pelo <suporte>
+
+    Exemplos: 
+      | suporte          | setor        |
+      | "sala@gmail.com" | "Financeiro" |
 
   @excluir_suporte_tecnico
   Cenário: Validar exclusão de suporte técnico
