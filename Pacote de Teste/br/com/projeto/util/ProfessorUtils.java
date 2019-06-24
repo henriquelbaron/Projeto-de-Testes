@@ -85,7 +85,7 @@ public class ProfessorUtils extends AccessDriver {
         WebElement alterarButton = webDriver.findElement(By.id("form_pesquisa:dadosProf:0:j_idt100"));
         alterarButton.click();
         sleep(450);
-        if (!webDriver.getCurrentUrl().equals("http://184.107.94.164:21595/Senac/administrador/professor.faces")) {
+        if (webDriver.findElements(By.id("form_pesquisa:btAddDisc")).isEmpty()) {
             alterarButton.click();
         }
         sleep(1000);
