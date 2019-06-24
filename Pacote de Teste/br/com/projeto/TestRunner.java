@@ -6,6 +6,6 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "Pacote de Teste/br/com/projeto/feature/", tags = "@cadastrar_suporte_tecnico",
-        glue = "classpath:br.com.projeto.step.suportecnico", monochrome = false, dryRun = false)
+        glue = "classpath:br.com.projeto.step.suportetecnico", monochrome = false, dryRun = false)
 public class TestRunner {
 }

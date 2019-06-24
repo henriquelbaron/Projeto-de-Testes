@@ -6,10 +6,8 @@
 package br.com.projeto.util;
 
 import java.util.List;
-import javax.swing.text.html.Option;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;

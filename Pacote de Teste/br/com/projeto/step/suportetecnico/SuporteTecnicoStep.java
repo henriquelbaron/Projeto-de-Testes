@@ -25,12 +25,12 @@ public class SuporteTecnicoStep {
 
     @Dado("que o usuário clicou no botão novo")
     public void que_o_usuário_clicou_no_botão_novo() {
-      componente.clickNew();
+        componente.clickNew();
     }
 
     @Dado("selecionou um {string}")
     public void selecionou_um(String string) {
-       componente.selectSetor(string);
+        componente.selectSetor(string);
     }
 
     @Dado("preencheu {string}")
@@ -40,11 +40,12 @@ public class SuporteTecnicoStep {
 
     @Quando("o usuário clicar no botão salvar")
     public void o_usuário_clicar_no_botão_salvar() {
-       componente.clickSave();
+        componente.clickSave();
     }
 
     @Então("o suporte sera mostrado ao pesquisar pelo {string}")
     public void o_suporte_sera_mostrado_ao_pesquisar_pelo(String string) {
-       componente.validNewSuporte(string);
+        componente.validNewSuporte(string);
+        componente.quitWebDriver();
     }
 }
