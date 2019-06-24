@@ -59,14 +59,36 @@ public class SuporteTecnicoStep {
         componente.clickAlterar();
     }
 
-    @Dado("trocou o {string}")
-    public void trocou_o(String string) {
-        componente.selectSetor(string);
+    @Dado("trocou o {string} e {string}")
+    public void trocou_o_e(String string, String string2) {
+        componente.changeSetorUser(string, string2);
     }
 
     @Então("o {string} sera mostrado ao pesquisar pelo {string}")
     public void o_sera_mostrado_ao_pesquisar_pelo(String string, String string2) {
         componente.validAlterSuporte(string, string2);
         componente.quitWebDriver();
+    }
+
+    @Dado("que o usuário pesquisou o {string} a ser excluído")
+    public void que_o_usuário_pesquisou_o_a_ser_excluído(String string) {
+        componente.findResponsavel(string);
+    }
+
+    @Quando("o usuário clicar no botão excluir suporte técnico")
+    public void o_usuário_clicar_no_botão_excluir_suporte_técnico() {
+        componente.clickDelete();
+    }
+
+    @Quando("o usuário confirmar a exclusão")
+    public void o_usuário_confirmar_a_exclusão() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Então("não ha {string}")
+    public void não_ha(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
     }
 }

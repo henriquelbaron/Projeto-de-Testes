@@ -21,7 +21,7 @@ Funcionalidade: Validar cadastro, edição e exclusão de suporte técnico, List
   Esquema do Cenário: Validar edição de suporte técnico
     Dado que o usuário pesquisou o <suporte> a ser alterado
     E clicou no botão alterar
-    E trocou o <setor>
+    E trocou o <setor> e <suporte>
     Quando o usuário clicar no botão salvar
     Então o <setor> sera mostrado ao pesquisar pelo <suporte>
 
@@ -30,10 +30,15 @@ Funcionalidade: Validar cadastro, edição e exclusão de suporte técnico, List
       | "sala@gmail.com" | "Financeiro" |
 
   @excluir_suporte_tecnico
-  Cenário: Validar exclusão de suporte técnico
+  Esquema do Cenário: Validar exclusão de suporte técnico
+    Dado que o usuário pesquisou o <suporte> a ser excluído
     Quando o usuário clicar no botão excluir suporte técnico
-    E o usuário confirmar a exclusão do suporte técnico
-    Então o suporte técnico selecionado deverá ser excluído da grid de suporte técnico
+    E o usuário confirmar a exclusão
+    Então não ha <suporte>
+
+    Exemplos: 
+      | suporte          |
+      | "sala@gmail.com" |
 
   @listar_suporte_tecnico
   Cenário: Validar listagem de suporte técnico

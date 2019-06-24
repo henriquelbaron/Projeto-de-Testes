@@ -90,6 +90,7 @@ public class SuporteTecnicoUtils extends AccessDriver {
     }
 
     public void clickAlterar() {
+        sleep(1000);
         elemento = webDriver.findElement(By.id("form_pesquisa:dadosTabela:1:j_idt94"));
         elemento.click();
     }
@@ -98,6 +99,11 @@ public class SuporteTecnicoUtils extends AccessDriver {
         findResponsavel(responsavel);
         List<WebElement> columns = checkUsuario(responsavel, setor);
         Assert.assertEquals(responsavel, columns.get(1).getText());
+    }
+
+    public void changeSetorUser(String responsavel, String setor) {
+        selectSetor(setor);
+        setUsuario(responsavel);
     }
 
 }
