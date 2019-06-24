@@ -124,6 +124,6 @@ public class ProfessorStep {
 
     @Então("a {string} não sera mostrada ao pesquisa pelo {string}")
     public void a_não_sera_mostrada_ao_pesquisa_pelo(String string, String string2) {
-        componente.validDeleteDisciplina(string, string);
+        componente.validDeleteDisciplina(string, string2);
     }
 }
