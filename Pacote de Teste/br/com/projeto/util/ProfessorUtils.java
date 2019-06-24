@@ -131,12 +131,8 @@ public class ProfessorUtils extends AccessDriver {
     }
 
     public void setDisciplinaTf(String disciplina) {
-        List<WebElement> tfDisciplinas = webDriver.findElements(By.xpath("//*[@id=\"form_pesquisa:painelDisciplinas_content\"]//input"));
-        for (WebElement tfDisciplina : tfDisciplinas) {
-            if (tfDisciplina.getAttribute("value").equals("")) {
-                tfDisciplina.sendKeys(disciplina);
-            }
-        }
+        WebElement elemento = webDriver.findElement(By.id("form_pesquisa:painelDisciplinas_content"));
+        elemento.sendKeys(disciplina);
     }
 
     public void validNewDisciplina(String disciplina, String professor) {
@@ -147,12 +143,7 @@ public class ProfessorUtils extends AccessDriver {
     }
 
     public void removeDisciplina(String disciplina) {
-        List<WebElement> tfDisciplinas = webDriver.findElements(By.xpath("//*[@id=\"form_pesquisa:painelDisciplinas_content\"]//input"));
-        for (WebElement tfDisciplina : tfDisciplinas) {
-            if (tfDisciplina.getAttribute("value").equals(disciplina)) {
-                webDriver.findElement(By.id("form_pesquisa:j_idt112:0:btRemDisc")).click();
-            }
-        }
+        webDriver.findElement(By.id("form_pesquisa:j_idt112:0:btRemDisc")).click();
     }
 
     public void validDeleteDisciplina(String disciplina, String professor) {
