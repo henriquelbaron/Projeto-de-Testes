@@ -128,8 +128,10 @@ public class SuporteTecnicoUtils extends AccessDriver {
     }
 
     public void validListagem() {
+        sleep(1000);
         List<WebElement> rows = webDriver.findElement(By.id("form_pesquisa:dadosTabela_data")).findElements(By.tagName("tr"));
-        Assert.assertTrue(rows.size() > 1);
+        sleep(1000);
+        Assert.assertTrue(rows.size() >= 1);
     }
 
 }
