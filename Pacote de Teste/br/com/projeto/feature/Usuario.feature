@@ -19,9 +19,11 @@ Funcionalidade: Persistência de Usuário
 
     Exemplos: 
       | nome       | email            |
-      | "Henrique" | "oi@gmail.com"   |
-      | "William"  | "thau@gmail.com" |
-      | "Adriene"  | "aaa@gmail.com"  |
+      | "Henrique" | "emaildohenrique@gmail.com"   |
+      | "William"  | "emaildowilliam@gmail.com" |
+      | "Adriene"  | "emaildaadriene@gmail.com"  |
+      | "João"  | "emaildojoao@gmail.com"  |
+      | "Maria"  | "emaildamaria@gmail.com"  |
 
   @alterar_usuario
   Esquema do Cenário: Alterar usuário
@@ -34,6 +36,7 @@ Funcionalidade: Persistência de Usuário
     Exemplos: 
       | usuário    | email                |
       | "Henrique" | "henrique@gmail.com" |
+      | "William" | "william@gmail.com" |
 
   @excluir_usuario
   Esquema do Cenário: Excluir usuário
@@ -45,6 +48,7 @@ Funcionalidade: Persistência de Usuário
     Exemplos: 
       | usuário   |
       | "Adriene" |
+      | "Maria" |
 
   @ativar_desativar_usuario
   Esquema do Cenário: Ativação ou Inativação de usuário
@@ -55,4 +59,5 @@ Funcionalidade: Persistência de Usuário
 
     Exemplos: 
       | usuário   |
-      | "William" |
+      | "João" |
+      | "Henrique" |

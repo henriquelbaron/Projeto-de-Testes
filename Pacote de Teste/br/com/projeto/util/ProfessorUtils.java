@@ -18,6 +18,8 @@ import org.openqa.selenium.WebElement;
  */
 public class ProfessorUtils extends AccessDriver {
 
+    private List<WebElement> rowOfColumns;
+
     private void menuClick() {
         webDriver.findElement(By.cssSelector(".jr-menu > ul:nth-child(1) > li:nth-child(12) > a:nth-child(1)")).click();
         sleep(1000);
@@ -33,9 +35,11 @@ public class ProfessorUtils extends AccessDriver {
             if (celular != null) {
                 if (columns.get(0).getText().equals(nome) && columns.get(1).getText().equals(email)
                         && columns.get(2).getText().replaceAll("[^0-9]", "").equals(celular)) {
+                    rowOfColumns = columns;
                     return rowMatches = columns;
                 }
             } else if (columns.get(0).getText().equals(nome)) {
+                rowOfColumns = columns;
                 return rowMatches = columns;
             }
         }

@@ -16,29 +16,30 @@ Funcionalidade: Validar cadastro, edição e exclusão de suporte técnico, List
     Exemplos: 
       | setor         | responsável       |
       | "Atendimento" | "sala@gmail.com	" |
+      | "Suporte" | "emailparasuporte@gmail.com" |
 
   @alterar_suporte_tecnico
-  Esquema do Cenário: Validar edição de suporte técnico
-    Dado que o usuário pesquisou o <suporte> a ser alterado
+  Cenário: Validar edição de suporte técnico
+    Dado que o usuário pesquisou o suporte a ser alterado
     E clicou no botão alterar
-    E trocou o <setor> e <suporte>
+    E trocou o setor e suporte
     Quando o usuário clicar no botão salvar
-    Então o <setor> sera mostrado ao pesquisar pelo <suporte>
+    Então o setor sera mostrado ao pesquisar pelo suporte
 
-    Exemplos: 
-      | suporte          | setor        |
-      | "sala@gmail.com" | "Financeiro" |
+#    Exemplos: 
+#      | suporte          | setor        |
+#      | "sala@gmail.com" | "Financeiro" |
 
   @excluir_suporte_tecnico
-  Esquema do Cenário: Validar exclusão de suporte técnico
-    Dado que o usuário pesquisou o <suporte> a ser excluído
+  Cenário: Validar exclusão de suporte técnico
+    Dado que o usuário pesquisou o suporte a ser excluído
     Quando o usuário clicar no botão excluir suporte técnico
     E o usuário confirmar a exclusão
-    Então não tera resultados ao pesquisar pelo <suporte>
+    Então não tera resultados ao pesquisar pelo suporte
 
-    Exemplos: 
-      | suporte          |
-      | "sala@gmail.com" |
+#    Exemplos: 
+#      | suporte          |
+#      | "sala@gmail.com" |
 
   @listar_suporte_tecnico
   Cenário: Validar listagem de suporte técnico

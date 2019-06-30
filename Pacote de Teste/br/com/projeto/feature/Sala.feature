@@ -33,6 +33,7 @@ Funcionalidade: Persistência de Sala
     Exemplos: 
       | sala      | nome        |
       | "Natação" | "Patinação" |
+      | "Redes" | "Yoga" |
 
   @excluir_sala
   Esquema do Cenário: Excluir sala
@@ -44,6 +45,7 @@ Funcionalidade: Persistência de Sala
     Exemplos: 
       | sala      |
       | "Estudos" |
+      | "Informática" |
 
   @listagem_sala
   Esquema do Cenário: Listagem de salas
@@ -53,4 +55,5 @@ Funcionalidade: Persistência de Sala
 
     Exemplos: 
       | sala          |
-      | "Informática" |
+      | "Patinação" |
+      | "Yoga" |

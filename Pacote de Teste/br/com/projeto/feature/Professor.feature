@@ -18,11 +18,13 @@ Funcionalidade: Cadastro de professores
     Então o <nome>,<celular> e <email> estará na listagem de professores
 
     Exemplos: 
-      | nome       | celular       | email             |
-      | "Henrique" | "48996850322" | "email@gmail.com" |
-      | "João"     | "48996850322" | "email@gmail.com" |
-      | "William"  | "48212341234" | "email@gmail.com" |
-      | "Adriene"  | "48212341234" | "email@gmail.com" |
+      | nome       | celular       | email                  |
+      | "Henrique" | "48996850322" | "email11@gmail.com"    |
+      | "João"     | "48996850322" | "email22@gmail.com"    |
+      | "William"  | "48212341234" | "email33@gmail.com"    |
+      | "Adriene"  | "48212341234" | "email44@gmail.com"    |
+      | "José"     | "48212341234" | "email55@gmail.com"    |
+      | "Excluido" | "48212341234" | "excluido55@gmail.com" |
 
   @alterar_professor
   Esquema do Cenário: Alterar Professor
@@ -33,8 +35,9 @@ Funcionalidade: Cadastro de professores
     Então as novas informações <nome> e <email> serão mostradas na listagem
 
     Exemplos: 
-      | professor  | nome             | email            |
-      | "Henrique" | "Henrique Baron" | "novo@gmail.com" |
+      | professor  | nome             | email                    |
+      | "Henrique" | "Henrique Baron" | "emailnovo@gmail.com"    |
+      | "José"     | "Josééé"         | "emailtrocado@gmail.com" |
 
   @excluir_professor
   Esquema do Cenário: Excluir Professor
@@ -44,8 +47,9 @@ Funcionalidade: Cadastro de professores
     Então o <professor> não estará mais na listagem
 
     Exemplos: 
-      | professor |
-      | "Adriene" |
+      | professor  |
+      | "Adriene"  |
+      | "Excluido" |
 
   @adicionar_disciplina_professor
   Esquema do Cenário: Adicionar Disciplina ao Professor
@@ -72,3 +76,4 @@ Funcionalidade: Cadastro de professores
     Exemplos: 
       | professor | disciplina |
       | "William" | "POO"      |
+      | "João"    | "QTS"      |
